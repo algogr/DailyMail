@@ -1,5 +1,5 @@
 QT -= gui
-QT += sql axcontainer
+QT += sql axcontainer network
 
 CONFIG += c++11 console
 CONFIG -= app_bundle
@@ -16,3 +16,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += main.cpp
+
+HEADERS +=
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../libs/build-SMTPEmail-Desktop_Qt_5_9_1_MinGW_32bit-Release/release/ -lSMTPEmail
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../libs/build-SMTPEmail-Desktop_Qt_5_9_1_MinGW_32bit-Debug/debug/ -lSMTPEmail
+else:unix: LIBS += -L$$PWD/../libs/build-SMTPEmail-Desktop_Qt_5_9_1_MinGW_32bit-Debug/ -lSMTPEmail
+
+INCLUDEPATH += $$PWD/../libs/SmtpClient/
+DEPENDPATH += $$PWD/../libs/SmtpClient/
